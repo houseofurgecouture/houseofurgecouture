@@ -13,188 +13,193 @@
             color: #fff;
             line-height: 1.6;
         }
-
         header {
             text-align: center;
             padding: 100px 20px;
             background: linear-gradient(135deg, #000, #333);
         }
-
         h1 {
             font-size: 3em;
             margin: 0;
             letter-spacing: 2px;
             text-transform: uppercase;
         }
-
         .quote {
             font-style: italic;
             font-size: 1.5em;
             margin-top: 20px;
             color: #d4af37;
         }
-
         section {
             padding: 80px 20px;
-            max-width: 800px;
+            max-width: 1200px;
             margin: 0 auto;
         }
-
-        h2 {
+        .about {
             text-align: center;
-            margin-bottom: 40px;
         }
-
+        .order-form {
+            margin-top: 40px;
+            text-align: center;
+        }
         .order-form form {
-            background-color: #111;
-            padding: 40px;
-            border: 1px solid #d4af37;
+            display: inline-block;
+            text-align: left;
+            max-width: 400px;
+            width: 100%;
         }
-
-        label {
+        .order-form label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             color: #d4af37;
         }
-
-        input, select, textarea {
+        .order-form input, .order-form textarea, .order-form select {
             width: 100%;
             padding: 10px;
             margin-bottom: 20px;
-            background-color: #000;
+            background-color: #111;
             border: 1px solid #d4af37;
             color: #fff;
             font-family: inherit;
         }
-
-        textarea {
-            resize: vertical;
-        }
-
-        button {
-            width: 100%;
-            padding: 14px;
+        .order-form button {
             background-color: #d4af37;
             color: #000;
-            font-weight: bold;
+            padding: 10px 20px;
             border: none;
             cursor: pointer;
+            font-weight: bold;
             text-transform: uppercase;
         }
-
-        button:hover {
+        .order-form button:hover {
             background-color: #b8860b;
         }
-
-        #priceBox {
-            margin-bottom: 25px;
-            font-size: 1.4em;
-            text-align: center;
-            color: #d4af37;
-            letter-spacing: 1px;
-        }
-
-        #formStatus {
-            margin-top: 20px;
-            text-align: center;
-            font-weight: bold;
-        }
-
         footer {
             text-align: center;
-            padding: 40px;
+            padding: 40px 20px;
             background-color: #111;
         }
-
+        a {
+            color: #d4af37;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
         @media (max-width: 768px) {
             h1 { font-size: 2em; }
             .quote { font-size: 1.2em; }
         }
     </style>
 </head>
-
 <body>
+    <header>
+        <h1>House of Urge Couture</h1>
+        <p class="quote">"We create when inspiration commands, when her taste is visualized."</p>
+    </header>
 
-<header>
-    <h1>House of Urge Couture</h1>
-    <p class="quote">
-        "We create when inspiration commands, when her taste is visualized."
-    </p>
-</header>
+    <section class="about">
+        <h2>About the Brand</h2>
+        <p>House of Urge Couture is not about quantity—it's about timeless elegance. Each piece is born from pure inspiration, crafted for those who seek the extraordinary.</p>
+    </section>
 
-<section class="order-form">
-    <h2>Place Your Order</h2>
+    <section class="order-form">
+        <h2>Place Your Order</h2>
+        <form id="orderForm" action="https://formspree.io/f/mykwapeo" method="POST">
+            <label for="name">First Name:</label>
+            <input type="text" id="name" name="name" required>
 
-    <form id="orderForm" action="https://formspree.io/f/mykwapeo" method="POST">
+            <label for="lastname">Last Name:</label>
+            <input type="text" id="lastname" name="lastname" required>
 
-        <label>First Name</label>
-        <input type="text" name="firstName" required>
+            <label for="piece">Select Your Piece:</label>
+            <select id="piece" name="piece" required>
+                <option value="" disabled selected>Select a piece</option>
+                <option value="Khaima" data-price="3100">Khaima</option>
+            </select>
 
-        <label>Last Name</label>
-        <input type="text" name="lastName" required>
+            <label for="size">Select Size:</label>
+            <select id="size" name="size" required>
+                <option value="" disabled selected>Select a size</option>
+                <option value="XS">XS</option>
+                <option value="S">S</option>
+                <option value="M">M</option>
+                <option value="L">L</option>
+                <option value="XL">XL</option>
+            </select>
 
-        <label>Select Piece</label>
-        <select name="piece" id="piece" onchange="updatePrice()" required>
-            <option value="">— Select a creation —</option>
-            <option value="3100">Khaima</option>
-            <!-- Future pieces can be added here -->
-        </select>
+            <label for="price">Price (MAD):</label>
+            <input type="text" id="price" name="price" readonly value="3100">
 
-        <div id="priceBox">Price: 3100 MAD</div>
+            <label for="country">Country:</label>
+            <input type="text" id="country" name="country" required>
 
-        <label>Size</label>
-        <select name="size" id="size" required>
-            <option value="">— Select size —</option>
-            <option>XS</option>
-            <option>S</option>
-            <option>M</option>
-            <option>L</option>
-            <option>XL</option>
-        </select>
+            <label for="city">City:</label>
+            <input type="text" id="city" name="city" required>
 
-        <label>Country</label>
-        <input type="text" name="country" placeholder="e.g. Morocco" required>
+            <label for="address">Delivery Address:</label>
+            <textarea id="address" name="address" rows="3" required></textarea>
 
-        <label>City</label>
-        <input type="text" name="city" placeholder="e.g. Rabat" required>
+            <label for="contact">Email or Phone:</label>
+            <input type="text" id="contact" name="contact" required>
 
-        <label>Full Delivery Address</label>
-        <textarea name="address" rows="3" placeholder="Street, building, apartment…" required></textarea>
+            <button type="submit">Submit Inquiry</button>
+        </form>
 
-        <label>Email</label>
-        <input type="email" name="email" required>
+        <!-- Luxury thank-you message -->
+        <div id="thankYouMessage" style="display:none; text-align:center; margin-top:40px;">
+          <h2 style="color:#d4af37; letter-spacing:1px;">
+            Thank you for your inquiry
+          </h2>
+          <p style="max-width:600px; margin:20px auto; font-size:1.1em;">
+            Your request has been carefully received by <strong>House of Urge Couture</strong>.<br><br>
+            Each piece is considered with intention and exclusivity.<br><br>
+            You will be contacted personally to finalize the details of your order.
+          </p>
+        </div>
+    </section>
 
-        <label>Phone Number</label>
-        <input type="tel" name="phone" required>
+    <footer>
+        <p>&copy; 2026 House of Urge Couture. All rights reserved. | <a href="#">Privacy Policy</a></p>
+    </footer>
 
-        <button type="submit">Submit Inquiry</button>
-        <p id="formStatus"></p>
+    <script>
+        // Smooth scrolling (optional)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+            });
+        });
 
-    </form>
-</section>
-
-<footer>
-    &copy; 2026 House of Urge Couture — All Rights Reserved
-</footer>
-
-<script>
-    function updatePrice() {
+        // Price auto-update
         const pieceSelect = document.getElementById("piece");
-        const priceBox = document.getElementById("priceBox");
-        const selectedPrice = pieceSelect.value;
+        const priceInput = document.getElementById("price");
 
-        if (selectedPrice) {
-            priceBox.style.display = "block";
-            priceBox.textContent = "Price: " + selectedPrice + " MAD";
-        } else {
-            priceBox.style.display = "none";
-            priceBox.textContent = "";
-        }
-    }
+        pieceSelect.addEventListener("change", function() {
+            const selected = pieceSelect.selectedOptions[0];
+            const price = selected.dataset.price || "";
+            priceInput.value = price;
+        });
 
-    // Initialize price display
-    updatePrice();
-</script>
+        // Luxury thank-you message submission
+        const form = document.getElementById("orderForm");
+        const thankYou = document.getElementById("thankYouMessage");
 
+        form.addEventListener("submit", async function (e) {
+            e.preventDefault();
+
+            const formData = new FormData(form);
+
+            await fetch(form.action, {
+                method: form.method,
+                body: formData,
+                headers: { 'Accept': 'application/json' }
+            });
+
+            form.style.display = "none";
+            thankYou.style.display = "block";
+        });
+    </script>
 </body>
 </html>
