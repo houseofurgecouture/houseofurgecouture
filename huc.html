@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House of Urge Couture</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        header {
+            text-align: center;
+            padding: 100px 20px;
+            background: linear-gradient(135deg, #000, #333);
+        }
+
+        h1 {
+            font-size: 3em;
+            margin: 0;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .quote {
+            font-style: italic;
+            font-size: 1.5em;
+            margin-top: 20px;
+            color: #d4af37;
+        }
+
+        section {
+            padding: 80px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .order-form form {
+            background-color: #111;
+            padding: 40px;
+            border: 1px solid #d4af37;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #d4af37;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            background-color: #000;
+            border: 1px solid #d4af37;
+            color: #fff;
+            font-family: inherit;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background-color: #d4af37;
+            color: #000;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        button:hover {
+            background-color: #b8860b;
+        }
+
+        #priceBox {
+            margin-bottom: 25px;
+            font-size: 1.4em;
+            text-align: center;
+            color: #d4af37;
+            letter-spacing: 1px;
+        }
+
+        #formStatus {
+            margin-top: 20px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            background-color: #111;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2em; }
+            .quote { font-size: 1.2em; }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>House of Urge Couture</h1>
+    <p class="quote">
+        "We create when inspiration commands, when her taste is visualized."
+    </p>
+</header>
+
+<section class="order-form">
+    <h2>Place Your Order</h2>
+
+    <form id="orderForm" action="https://formspree.io/f/mykwapeo" method="POST">
+
+        <label>First Name</label>
+        <input type="text" name="firstName" required>
+
+        <label>Last Name</label>
+        <input type="text" name="lastName" required>
+
+        <label>Select Piece</label>
+        <select name="piece" id="piece" onchange="updatePrice()" required>
+            <option value="">— Select a creation —</option>
+            <option value="3100">Khaima</option>
+            <!-- Future pieces can be added here -->
+        </select>
+
+        <div id="priceBox">Price: 3100 MAD</div>
+
+        <label>Size</label>
+        <select name="size" id="size" required>
+            <option value="">— Select size —</option>
+            <option>XS</option>
+            <option>S</option>
+            <option>M</option>
+            <option>L</option>
+            <option>XL</option>
+        </select>
+
+        <label>Country</label>
+        <input type="text" name="country" placeholder="e.g. Morocco" required>
+
+        <label>City</label>
+        <input type="text" name="city" placeholder="e.g. Rabat" required>
+
+        <label>Full Delivery Address</label>
+        <textarea name="address" rows="3" placeholder="Street, building, apartment…" required></textarea>
+
+        <label>Email</label>
+        <input type="email" name="email" required>
+
+        <label>Phone Number</label>
+        <input type="tel" name="phone" required>
+
+        <button type="submit">Submit Inquiry</button>
+        <p id="formStatus"></p>
+
+    </form>
+</section>
+
+<footer>
+    &copy; 2026 House of Urge Couture — All Rights Reserved
+</footer>
+
+<script>
+    function updatePrice() {
+        const pieceSelect = document.getElementById("piece");
+        const priceBox = document.getElementById("priceBox");
+        const selectedPrice = pieceSelect.value;
+
+        if (selectedPrice) {
+            priceBox.style.display = "block";
+            priceBox.textContent = "Price: " + selectedPrice + " MAD";
+        } else {
+            priceBox.style.display = "none";
+            priceBox.textContent = "";
+        }
+    }
+
+    // Initialize price display
+    updatePrice();
+</script>
+
+</body>
+</html>
