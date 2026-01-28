@@ -45,7 +45,7 @@
             100% { transform: translateX(-50%) translateY(60px); opacity: 0.3; }
         }
 
-        h1, .tagline, .brand-about {
+        h1, .tagline {
             position: relative;
             z-index: 1;
         }
@@ -59,16 +59,8 @@
         .tagline {
             text-align: center;
             font-style: italic;
-            margin-bottom: 10px;
-            color: #aaa;
-        }
-
-        .brand-about {
-            text-align: center;
-            font-size: 0.85em;
-            color: #888;
             margin-bottom: 40px;
-            letter-spacing: 0.5px;
+            color: #aaa;
         }
 
         label {
@@ -76,7 +68,8 @@
             margin-top: 20px;
             margin-bottom: 6px;
             font-size: 0.9em;
-            color: #ccc;
+            color: #d4af37;
+            letter-spacing: 0.5px;
         }
 
         input, select, textarea {
@@ -110,20 +103,23 @@
             background: #bfa133;
         }
 
+        /* Elegant price display */
         #priceDisplay {
             color: #d4af37;
             font-weight: bold;
             font-size: 1.2em;
-            margin-top: -5px;
+            margin-top: 10px;
+            display: none;
         }
 
         #thankYou {
             display: none;
             text-align: center;
             margin-top: 40px;
-            font-size: 1.1em;
+            font-size: 1.15em;
             color: #d4af37;
             animation: fadeIn 1.5s ease;
+            line-height: 1.6;
         }
 
         @keyframes fadeIn {
@@ -139,7 +135,6 @@
 
     <h1>HOUSE OF URGE COUTURE</h1>
     <p class="tagline">We create when inspiration commands, when her taste is visualized.</p>
-    <p class="brand-about">One creation at a time. No catalogues. No repetition.</p>
 
     <form id="orderForm" action="https://formspree.io/f/mykwapeo" method="POST">
         
@@ -155,7 +150,7 @@
             <option value="Khaima" data-price="3100">Khaima</option>
         </select>
 
-        <p id="priceDisplay">Price: 3100 MAD</p>
+        <p id="priceDisplay"></p>
 
         <label>Size</label>
         <select name="size" required>
@@ -188,7 +183,8 @@
 
     <div id="thankYou">
         Your request has been received.<br>
-        House of Urge Couture will reach out to you.
+        A House of Urge Couture advisor will contact you shortly<br>
+        to curate your exclusive order.
     </div>
 </div>
 
@@ -201,7 +197,12 @@
     pieceSelect.addEventListener("change", function() {
         const selected = pieceSelect.selectedOptions[0];
         const price = selected.dataset.price || "";
-        priceDisplay.textContent = price ? `Price: ${price} MAD` : "";
+        if(price){
+            priceDisplay.style.display = "block";
+            priceDisplay.textContent = `Price: ${price} MAD`;
+        } else {
+            priceDisplay.style.display = "none";
+        }
     });
 
     form.addEventListener("submit", function(e) {
@@ -219,33 +220,3 @@
 
 </body>
 </html>
-
-
-    
-        
-           
-       
-
-
-    
-       
-       
-            
-      
-
-        
-         
-
-
-            
-        
-
-    
-        
-        
-            
-
-            
-
-
-
