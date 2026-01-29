@@ -2,24 +2,22 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>House of Urge Couture</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House of Urge Couture</title>
     <style>
         body {
-            font-family: 'Georgia', serif;
-            background: #0f0f0f;
-            color: #f5f5f5;
+            font-family: 'Times New Roman', serif;
             margin: 0;
             padding: 0;
+            background-color: #000;
+            color: #fff;
+            line-height: 1.6;
         }
 
-        .container {
-            max-width: 600px;
-            margin: 80px auto;
-            padding: 40px;
-            background: #141414;
-            border-radius: 12px;
-            box-shadow: 0 0 40px rgba(0,0,0,0.6);
+        header {
+            text-align: center;
+            padding: 100px 20px;
+            background: linear-gradient(135deg, #000, #333);
             position: relative;
             overflow: hidden;
         }
@@ -27,11 +25,11 @@
         /* CINEMATIC SUN */
         .sun {
             position: absolute;
-            top: -120px;
+            top: -150px;
             left: 50%;
             transform: translateX(-50%);
-            width: 300px;
-            height: 300px;
+            width: 350px;
+            height: 350px;
             background: radial-gradient(circle, #d4af37 0%, #ff8c42 40%, transparent 70%);
             border-radius: 50%;
             opacity: 0.6;
@@ -40,137 +38,171 @@
         }
 
         @keyframes sunrise {
-            0% { transform: translateX(-50%) translateY(60px); opacity: 0.3; }
+            0% { transform: translateX(-50%) translateY(80px); opacity: 0.3; }
             50% { transform: translateX(-50%) translateY(0px); opacity: 0.7; }
-            100% { transform: translateX(-50%) translateY(60px); opacity: 0.3; }
+            100% { transform: translateX(-50%) translateY(80px); opacity: 0.3; }
         }
 
-        h1, .tagline {
+        header h1, header .quote {
             position: relative;
             z-index: 1;
         }
 
         h1 {
-            text-align: center;
+            font-size: 3em;
+            margin: 0;
             letter-spacing: 2px;
-            margin-bottom: 10px;
+            text-transform: uppercase;
         }
 
-        .tagline {
-            text-align: center;
+        .quote {
             font-style: italic;
+            font-size: 1.5em;
+            margin-top: 20px;
+            color: #d4af37;
+        }
+
+        section {
+            padding: 80px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            text-align: center;
             margin-bottom: 40px;
-            color: #aaa;
+        }
+
+        .order-form form {
+            background-color: #111;
+            padding: 40px;
+            border: 1px solid #d4af37;
         }
 
         label {
             display: block;
-            margin-top: 20px;
-            margin-bottom: 6px;
-            font-size: 0.9em;
+            margin-bottom: 8px;
             color: #d4af37;
-            letter-spacing: 0.5px;
         }
 
         input, select, textarea {
             width: 100%;
             padding: 10px;
-            background: transparent;
-            border: 1px solid #333;
+            margin-bottom: 20px;
+            background-color: #000;
+            border: 1px solid #d4af37;
             color: #fff;
-            border-radius: 6px;
+            font-family: inherit;
         }
 
-        input:focus, select:focus, textarea:focus {
-            outline: none;
-            border-color: #d4af37;
+        /* FIX WHITE DROPDOWN BUG */
+        select option {
+            background-color: #000;
+            color: #fff;
+        }
+
+        textarea {
+            resize: vertical;
         }
 
         button {
-            margin-top: 30px;
             width: 100%;
-            padding: 12px;
-            background: #d4af37;
-            border: none;
+            padding: 14px;
+            background-color: #d4af37;
             color: #000;
             font-weight: bold;
-            letter-spacing: 1px;
-            border-radius: 6px;
+            border: none;
             cursor: pointer;
+            text-transform: uppercase;
         }
 
         button:hover {
-            background: #bfa133;
+            background-color: #b8860b;
         }
 
-        /* Elegant price display */
-        #priceDisplay {
-            color: #d4af37;
-            font-weight: bold;
-            font-size: 1.2em;
-            margin-top: 10px;
-            display: none;
-        }
-
-        #thankYou {
-            display: none;
+        #priceBox {
+            margin-bottom: 25px;
+            font-size: 1.4em;
             text-align: center;
-            margin-top: 40px;
-            font-size: 1.15em;
             color: #d4af37;
+            letter-spacing: 1px;
+            display: none;
+        }
+
+        #formStatus {
+            margin-top: 30px;
+            text-align: center;
+            font-weight: bold;
+            color: #d4af37;
+            display: none;
             animation: fadeIn 1.5s ease;
-            line-height: 1.6;
         }
 
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
         }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            background-color: #111;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2em; }
+            .quote { font-size: 1.2em; }
+        }
     </style>
 </head>
+
 <body>
 
-<div class="container">
+<header>
     <div class="sun"></div>
+    <h1>House of Urge Couture</h1>
+    <p class="quote">
+        "We create when inspiration commands, when her taste is visualized."
+    </p>
+</header>
 
-    <h1>HOUSE OF URGE COUTURE</h1>
-    <p class="tagline">We create when inspiration commands, when her taste is visualized.</p>
+<section class="order-form">
+    <h2>Place Your Order</h2>
 
     <form id="orderForm" action="https://formspree.io/f/mykwapeo" method="POST">
-        
+
         <label>First Name</label>
-        <input type="text" name="first_name" required>
+        <input type="text" name="firstName" required>
 
         <label>Last Name</label>
-        <input type="text" name="last_name" required>
+        <input type="text" name="lastName" required>
 
-        <label>Piece</label>
-        <select name="piece" id="piece" required>
-            <option value="">Select a piece</option>
-            <option value="Khaima" data-price="3100">Khaima</option>
+        <label>Select Piece</label>
+        <select name="piece" id="piece" onchange="updatePrice()" required>
+            <option value="">— Select a creation —</option>
+            <option value="3100">Khaima</option>
         </select>
 
-        <p id="priceDisplay"></p>
+        <div id="priceBox"></div>
 
         <label>Size</label>
-        <select name="size" required>
-            <option value="">Select size</option>
+        <select name="size" id="size" required>
+            <option value="">— Select size —</option>
             <option>XS</option>
             <option>S</option>
             <option>M</option>
             <option>L</option>
             <option>XL</option>
-            <option>Custom</option>
         </select>
 
         <label>Country</label>
-        <input type="text" name="country" required>
+        <input type="text" name="country" placeholder="e.g. Morocco" required>
 
         <label>City</label>
-        <input type="text" name="city" required>
+        <input type="text" name="city" placeholder="e.g. Rabat" required>
 
-        <label>Delivery Address</label>
-        <textarea name="address" rows="3" required></textarea>
+        <label>Full Delivery Address</label>
+        <textarea name="address" rows="3" placeholder="Street, building, apartment…" required></textarea>
 
         <label>Email</label>
         <input type="email" name="email" required>
@@ -179,31 +211,32 @@
         <input type="tel" name="phone" required>
 
         <button type="submit">Submit Inquiry</button>
-    </form>
+        <p id="formStatus"></p>
 
-    <div id="thankYou">
-        Your request has been received.<br>
-        A House of Urge Couture advisor will contact you shortly<br>
-        to curate your exclusive order.
-    </div>
-</div>
+    </form>
+</section>
+
+<footer>
+    &copy; 2026 House of Urge Couture — All Rights Reserved
+</footer>
 
 <script>
-    const form = document.getElementById("orderForm");
-    const thankYou = document.getElementById("thankYou");
-    const pieceSelect = document.getElementById("piece");
-    const priceDisplay = document.getElementById("priceDisplay");
+    function updatePrice() {
+        const pieceSelect = document.getElementById("piece");
+        const priceBox = document.getElementById("priceBox");
+        const selectedPrice = pieceSelect.value;
 
-    pieceSelect.addEventListener("change", function() {
-        const selected = pieceSelect.selectedOptions[0];
-        const price = selected.dataset.price || "";
-        if(price){
-            priceDisplay.style.display = "block";
-            priceDisplay.textContent = `Price: ${price} MAD`;
+        if (selectedPrice) {
+            priceBox.style.display = "block";
+            priceBox.textContent = "Price: " + selectedPrice + " MAD";
         } else {
-            priceDisplay.style.display = "none";
+            priceBox.style.display = "none";
+            priceBox.textContent = "";
         }
-    });
+    }
+
+    const form = document.getElementById("orderForm");
+    const status = document.getElementById("formStatus");
 
     form.addEventListener("submit", function(e) {
         e.preventDefault();
@@ -213,7 +246,12 @@
             headers: { 'Accept': 'application/json' }
         }).then(() => {
             form.style.display = "none";
-            thankYou.style.display = "block";
+            status.style.display = "block";
+            status.innerHTML = `
+                You're welcome at House of Urge Couture.<br>
+                Your request has been received.<br>
+                We will reach out to you.
+            `;
         });
     });
 </script>
