@@ -22,7 +22,6 @@
             overflow: hidden;
         }
 
-        /* CINEMATIC SUN */
         .sun {
             position: absolute;
             top: -150px;
@@ -95,14 +94,9 @@
             font-family: inherit;
         }
 
-        /* FIX WHITE DROPDOWN BUG */
         select option {
             background-color: #000;
             color: #fff;
-        }
-
-        textarea {
-            resize: vertical;
         }
 
         button {
@@ -116,10 +110,6 @@
             text-transform: uppercase;
         }
 
-        button:hover {
-            background-color: #b8860b;
-        }
-
         #priceBox {
             margin-bottom: 25px;
             font-size: 1.4em;
@@ -129,36 +119,40 @@
             display: none;
         }
 
-        #formStatus {
-            margin-top: 30px;
-            text-align: center;
-            font-weight: bold;
-            color: #d4af37;
-            display: none;
-            animation: fadeIn 1.5s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
         footer {
             text-align: center;
             padding: 40px;
             background-color: #111;
         }
 
-        @media (max-width: 768px) {
-            h1 { font-size: 2em; }
-            .quote { font-size: 1.2em; }
+        /* FINAL SCENE */
+        #finalScene {
+            display: none;
+            text-align: center;
+            padding: 140px 20px;
+            animation: fadeIn 2s ease;
+        }
+
+        #finalScene h1 {
+            margin-bottom: 20px;
+        }
+
+        #finalScene p {
+            color: #d4af37;
+            font-size: 1.3em;
+            line-height: 1.8;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
     </style>
 </head>
 
 <body>
 
-<header>
+<header id="mainHeader">
     <div class="sun"></div>
     <h1>House of Urge Couture</h1>
     <p class="quote">
@@ -166,7 +160,7 @@
     </p>
 </header>
 
-<section class="order-form">
+<section class="order-form" id="orderSection">
     <h2>Place Your Order</h2>
 
     <form id="orderForm" action="https://formspree.io/f/mykwapeo" method="POST">
@@ -186,23 +180,20 @@
         <div id="priceBox"></div>
 
         <label>Size</label>
-        <select name="size" id="size" required>
+        <select name="size" required>
             <option value="">— Select size —</option>
-            <option>XS</option>
-            <option>S</option>
-            <option>M</option>
-            <option>L</option>
-            <option>XL</option>
+            <option>XS</option><option>S</option><option>M</option>
+            <option>L</option><option>XL</option>
         </select>
 
         <label>Country</label>
-        <input type="text" name="country" placeholder="e.g. Morocco" required>
+        <input type="text" name="country" required>
 
         <label>City</label>
-        <input type="text" name="city" placeholder="e.g. Rabat" required>
+        <input type="text" name="city" required>
 
         <label>Full Delivery Address</label>
-        <textarea name="address" rows="3" placeholder="Street, building, apartment…" required></textarea>
+        <textarea name="address" rows="3" required></textarea>
 
         <label>Email</label>
         <input type="email" name="email" required>
@@ -211,9 +202,18 @@
         <input type="tel" name="phone" required>
 
         <button type="submit">Submit Inquiry</button>
-        <p id="formStatus"></p>
-
     </form>
+</section>
+
+<!-- FINAL CINEMATIC SCREEN -->
+<section id="finalScene">
+    <div class="sun"></div>
+    <h1>House of Urge Couture</h1>
+    <p>
+        You're welcome at House of Urge Couture.<br>
+        Your request has been received.<br>
+        We will reach out to you.
+    </p>
 </section>
 
 <footer>
@@ -222,22 +222,17 @@
 
 <script>
     function updatePrice() {
-        const pieceSelect = document.getElementById("piece");
+        const piece = document.getElementById("piece");
         const priceBox = document.getElementById("priceBox");
-        const selectedPrice = pieceSelect.value;
-
-        if (selectedPrice) {
+        if (piece.value) {
             priceBox.style.display = "block";
-            priceBox.textContent = "Price: " + selectedPrice + " MAD";
+            priceBox.textContent = "Price: " + piece.value + " MAD";
         } else {
             priceBox.style.display = "none";
-            priceBox.textContent = "";
         }
     }
 
     const form = document.getElementById("orderForm");
-    const status = document.getElementById("formStatus");
-
     form.addEventListener("submit", function(e) {
         e.preventDefault();
         fetch(form.action, {
@@ -245,13 +240,9 @@
             body: new FormData(form),
             headers: { 'Accept': 'application/json' }
         }).then(() => {
-            form.style.display = "none";
-            status.style.display = "block";
-            status.innerHTML = `
-                You're welcome at House of Urge Couture.<br>
-                Your request has been received.<br>
-                We will reach out to you.
-            `;
+            document.getElementById("mainHeader").style.display = "none";
+            document.getElementById("orderSection").style.display = "none";
+            document.getElementById("finalScene").style.display = "block";
         });
     });
 </script>
